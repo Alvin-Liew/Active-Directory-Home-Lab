@@ -57,3 +57,4 @@ Shown Below:
 If you want you can rename the system by right clicking "Windows Start" => click "System" => click "Rename this PC" to DC or Domain Controller.
 Once done you can restart the machine
 
+After restarting, 
