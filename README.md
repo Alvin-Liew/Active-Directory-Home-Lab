@@ -57,4 +57,10 @@ Shown Below:
 If you want you can rename the system by right clicking "Windows Start" => click "System" => click "Rename this PC" to DC or Domain Controller.
 Once done you can restart the machine
 
-After restarting, 
+After restarting, return back to the ethernet connection list and right click the "INTERNAL" network => click “Properties” => click “Internet Protocol Version 4 …” => click the “Properties” option below it again => select “use the following IP” and use the details in our network design figure above for the set up as follows:
+IP: 192.168.0.1
+Subnet Mask: 255.255.255.0
+Default Gateway: <empty> (the DC will serve as the default gateway)
+Preferred DNS: 127.0.0.1 (Loop-back-IP address // When we install AD DS, DNS is automatically installed and this server will use itself as the DNS server)
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/0e52df89-b407-4c09-a5a9-82c42161e20a)
