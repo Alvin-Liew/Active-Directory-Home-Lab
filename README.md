@@ -4,8 +4,6 @@
 The Active Directory Home Lab project was designed to establish and configure a comprehensive network infrastructure in our Oracle Virtual Box. I will demonstrate how to efficiently add over 1,000 users using PowerShell Scripts for automation.
 
 ### Skills Learned
-[Bullet Points - Remove this afterwards]
-
 - Installing, configuring, and managing Active Directory Domain Services (AD DS), including creating and managing a large number of user accounts
 - Writing and executing scripts to automate the creation and management of users in Active Directory
 - Setting up and configuring virtual machines and virtual network environments using Oracle VirtualBox
