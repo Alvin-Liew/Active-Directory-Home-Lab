@@ -126,3 +126,28 @@ Once the installation is completed, click on “tools” => click on “Router a
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/b0a923c6-e834-4b80-8d01-b48fbce6402e)
 
+With the installation of RAS and NAT completed computers on our LAN will be able to reach the internet once the DHCP server is installed.
+
+6. Install Dynamic Host Configuration Protocol (DHCP) server
+
+A mechanism called DHCP is used to dynamically allocate IP addresses to networked devices. We won't go into great depth regarding this protocol's operation, but in general, IP addresses are issued depending on the scope (range) of selected IP addresses as well as the mode (Automatic, Dynamic, and Fixed) defined on the DHCP server.
+
+As can be seen from the network architecture above, we have IP addresses reserved in the 172.16.0.100–200 range. This implies that an IP address within this range will be "offered" to any machine wanting to join our network. Now, that's quite a bit of theory.
+
+Click "Add roles & features" as per normal => Following => Installation based on features or roles => Choose the "DC" server. Choose the DHCP server. Next (3 times) => Add features Put in.
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/1efc0292-41fb-455b-863d-480e7b07b0eb)
+
+Once the installation is completed, click on “close”. Next is to configure the installed DHCP server with the scope as discussed.
+
+Click “Tools” => DHCP => Click “Primary-DC” => Rightclick on “IPv4” => New scope => use 192.168.0.150–250 as the scope name => Start IP address: 172.16.0.100 => End IP address: 172.16.0.200 => subnet mask of /24 or 255.255.255.0 => No exclusion in our case so click “Next” => Lease duration is case dependent, so leave the default => Click yes to configure DHCP options — this specifies how computers joining the domain will access the internet. In this case, our DC is the option, so click next and Enter 172.16.0.1 => click “Add” => Next (3x) => Finish.
+
+The IPv4 is currently displaying a red arrow, We need to authorize the DC and refresh. So right-click “Primary-DC” => click authorize => right-click again and click refresh and both IPv4 and IPv6 will turn green. As you notice the address lease is empty and this is where the windows 10 client machine will go
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/6a17b1a9-acbe-416f-a170-cf067e2f8c8f)
+
+6. Automating the creation of 1,000 users using powershell script
+
+Click "Start" => "Windows PowerShell ISE" which is located under "Windows PowerShell"
+Click "new script" and paste the script as follows:
+
