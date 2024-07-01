@@ -41,3 +41,19 @@ Network Adapter 2:
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/811ba8c4-4aa1-4604-8787-c9ee27e8814e)
 
 Note: The VM being configured is the one you installed Windows Server 2019 on. It will serve as the domain controller. Remember that the DC is a server that has active directory software installed on it.
+
+Once you're finished setting up the VM settings you can select the server and start it up. Remember to select "input" => "Keyboard" => "insert ctrl-alt-delete" to take you to the login page where you will insert your password.
+
+Click on "Network"
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/578b1584-71a0-4c1f-b73c-0f9cf24c86c2)
+
+Click on "change adapter options". You will be presented with two Ethernet connections, right click one of the ethernet connections => select "Status" => click "Details..." => determine which one is your internal network and external network. Once you have identified your internal and external network, you should rename the networks to easily identify them later.
+
+Shown Below:
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/bb750b63-c6fc-43ef-8881-20ac4c199f59)
+
+If you want you can rename the system by right clicking "Windows Start" => click "System" => click "Rename this PC" to DC or Domain Controller.
+Once done you can restart the machine
+
