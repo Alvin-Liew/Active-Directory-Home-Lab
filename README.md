@@ -31,6 +31,7 @@ Next, open up the settings and assign two network adapters to the Virtual Machin
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/0ebfcbf6-08c9-42fe-b9da-701062ff65a7)
 
 Network Adapter 1
+
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/811ba8c4-4aa1-4604-8787-c9ee27e8814e)
 
 Network Adapter 2
