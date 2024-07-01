@@ -90,7 +90,7 @@ We installed the AD DS program in the preceding stage. The server will be promot
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/9991ddc5-635b-4b62-bc82-210020bce2ea)
 
-=> Select "Add a new forest." mydomain.com is the root domain name => Select a passcode => Next (4x) => After installation, an automated server restart will occur. You'll have to sign in once more.
+Select "Add a new forest." mydomain.com is the root domain name => Select a passcode => Next (4x) => After installation, an automated server restart will occur. You'll have to sign in once more.
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/4f99a39c-f899-4c59-8adf-e7d81ed3e285)
 
@@ -102,7 +102,7 @@ Click "Start" => "Active Directory Users and Computers" which is located under "
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/b0da8428-7db8-4b5d-96c4-df4c81e9ff25)
 
-Right-click "mydomain.com" Novel => New => Organizational Unit => You may call it "Admin" => Select "Admin" from the menu => => new user => I'll use Alvin Liew for the first and last names. Use your own name -> a-liew is the user login name ('a' for the admin account, first name initial, last name convention) => Next => enter your password for login => Verify that the password never expires for the sake of this exercise => Subsequent => Completion.
+Right-click "mydomain.com" Novel => New => Organizational Unit => You may call it "Admin" => Select "Admin" from the menu => new user => I'll use Alvin Liew for the first and last names. Use your own name -> a-liew is the user login name ('a' for the admin account, first name initial, last name convention) => Next => enter your password for login => Verify that the password never expires for the sake of this exercise => Subsequent => Completion.
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/368f0b2f-497e-4899-a5e0-dafe3fa2aa05)
 
@@ -113,3 +113,16 @@ A user has been created, however this user has to be elevated to administrator. 
 We can now sign out of the default admin account and sign in using the domain admin user account we just created.
 
 Click on the Windows icon => click on the Administrator icon => click “sign out” => and sign in with the new account.
+
+5. Install Remote Access Services (RAS) and Network Address Translation (NAT) on the DC
+
+Our network is set up to mimic a business setting, with traffic from clients on our private network or local area network (LAN) being sent to the internet via the domain controller, which is a single IP address. The NAT and RAS gateways make this feasible.
+
+To install RAS and NAT, navigate to the server manager => click “Add roles & features” => Next => Role-based or feature-based installation => select the “DC” server => click “Remote Access” => Next (3x) => Select “Routing” => Add feature => Next (3x) => Install.
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/eddcdb54-6188-404b-8fdb-a97d4a3041d2)
+
+Once the installation is completed, click on “tools” => click on “Router and Remote Access Service” => Right-click “DC (local)” => click “Configure and enable RRAS” => Next => Select Network Address Translation => Next => If your network interfaces don’t show up, cancel and repeat the process => Select the internet => Next => Finish.
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/b0a923c6-e834-4b80-8d01-b48fbce6402e)
+
