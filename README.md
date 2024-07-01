@@ -149,5 +149,48 @@ The IPv4 is currently displaying a red arrow, We need to authorize the DC and re
 6. Automating the creation of 1,000 users using powershell script
 
 Click "Start" => "Windows PowerShell ISE" which is located under "Windows PowerShell"
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/11812f5c-774b-4ee8-af17-9d28a30977e8)
+
 Click "new script" and paste the script as follows:
+
+# ------------------------------------------------------ #
+$PASSWORD_FOR_USERS   = "UserPassword1"
+
+$USER_FIRST_LAST_LIST = Get-Content .\names.txt
+# ------------------------------------------------------ #
+
+$password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
+
+New-ADOrganizationalUnit -Name _USERS -ProtectedFromAccidentalDeletion $false
+
+foreach ($n in $USER_FIRST_LAST_LIST) {
+
+    $first = $n.Split(" ")[0].ToLower()
+    $last = $n.Split(" ")[1].ToLower()
+    $username = "$($first.Substring(0,1))$($last)".ToLower()
+    Write-Host "Creating user: $($username)" -BackgroundColor Black -ForegroundColor Cyan
+    
+    New-AdUser -AccountPassword $password `
+               -GivenName $first `
+               -Surname $last `
+               -DisplayName $username `
+               -Name $username `
+               -EmployeeID $username `
+               -PasswordNeverExpires $true `
+               -Path "ou=_USERS,$(([ADSI]`"").distinguishedName)" `
+               -Enabled $true
+}
+
+Before running the code you must generate 1000 random first and last names. I used Chatgpt and inserted all of them into a text document. Make sure to rename the text document to names or the code won't work.
+
+After creating the text document, You would need to locate the file using this command: "c:\users\a-liew\desktop", this is if your text document is on the desktop. Type ls and make sure that the file is stored in the location. Make sure to replace a-liew with whatever account you are logged into
+
+Once you have located the file you can run the code
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/5b89a87f-0f24-4206-b418-6677c3534251)
+
+Once the script is finished, You will start to notice in your "Users" file located in "Active Directory User and Computers" that there are 1000 users now.
+
+7. Create a Virtual Machine for your Windows Computer
 
