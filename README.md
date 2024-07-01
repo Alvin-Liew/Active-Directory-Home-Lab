@@ -225,5 +225,5 @@ If you navigate to your Computers by Clicking "Start" => "Active Directory Users
 
 With all this setup you can go back to your client machine and login as any of the users we created using the powershell script
 
-### Conclusion
+## Conclusion
 We have successfully completed the setup and configuration of our network infrastructure. By installing and configuring the necessary software, such as DHCP, and utilizing an architectural design blueprint, we have ensured smooth network connectivity and IP address assignment for clients. By automating user creation through a PowerShell script, we have streamlined administrative tasks. With the Windows 10 virtual machine running as our client, we have verified the network’s functionality. By adding the client machine to the domain, we have integrated it with our Active Directory setup. Overall, this home lab implementation demonstrates a successful deployment of network and domain services, allowing for efficient management and user authentication.
