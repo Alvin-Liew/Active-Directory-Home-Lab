@@ -192,5 +192,37 @@ Once you have located the file you can run the code
 
 Once the script is finished, You will start to notice in your "Users" file located in "Active Directory User and Computers" that there are 1000 users now.
 
+(Remember that "$PASSWORD_FOR_USERS   = "UserPassword1"" is what we are setting as the passwords for all the accounts which you will need later)
+
 7. Create a Virtual Machine for your Windows Computer
 
+Click new => Name your VM, select the version "Windows 10 (64-bit)," and hit next => Assign at least 4GB of RAM and assign 4 CPU processors, and hit next => next => Finish
+Next, open up the settings and select “General” => select “Advanced” and choose “Bidirectional” in the dropdown box for both “Shared Clipboard” and “Drag ‘n’ Drop”
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/8ebb5129-50f8-4289-8fc7-23d44514f18e)
+
+Next, Assign the network adapter 1 to the internal network establishing a connection from the client computer to the server using a virtual network.
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/730e7dee-99a1-44fa-a544-73e590e6bae3)
+
+Once you're finished setting up the VM settings you can select the windows 10 machine and start it up. Setup windows 10 and make sure to select windows 10 pro when setting it up. 
+
+When the installation is completed, you will need to setup the machine for an organization and select "Domain join instead" => Fill out the name with "User" => and leave the passwork empty => Once you have load up to the desktop screen we will start a network test => search of CMD => start it up => ping www.google.com => start another ping to mydomain.com
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/23056f08-31b0-4ede-92a2-d48bb700ff68)
+
+As you can see that www.google.com resolved which means that our DNS server is working and since we can ping to the internet that means the whole infrustructure is working. This shows that we have connectivity all the way the default gateway which is the domain controller and the domain controller is properly natting it and forwarding it out to the internet and properly come back as an echo reply.
+
+We can change the name of the windows computer to Client1 following the network diagram by right clicking "Windows Start" => click "System" => click "Rename this PC (advanced)" => click "Change..." => Rename computer name to "CLient1" => select "Domain:" and enter: "mydomain.com" => click ok => enter the admin account we created awhile back: (user: a-liew) => restart now
+
+Once this is done if you go back to the server machine and navigate through the server manager to tools => Click DHCP => click the dropdown bar for "IPv4" => click "Scope [172.16.0...0]" => click address leases we can see that we have one lease from our client computer
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/c71caaea-cf5c-4352-ba86-cf0729825630)
+
+If you navigate to your Computers by Clicking "Start" => "Active Directory Users and Computers" which is located under "Windows Administative Tools" => click the dropdown bar for "mydomain.com" => click "Computers" you will find our client computer there as well
+
+![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/64ea56f0-72bf-4904-8c39-aa2558e7e7c9)
+
+With all this setup you can go back to your client machine and login as any of the users we created using the powershell script
+
+We have successfully completed the setup and configuration of our network infrastructure. By installing and configuring the necessary software, such as DHCP, and utilizing an architectural design blueprint, we have ensured smooth network connectivity and IP address assignment for clients. By automating user creation through a PowerShell script, we have streamlined administrative tasks. With the Windows 10 virtual machine running as our client, we have verified the network’s functionality. By adding the client machine to the domain, we have integrated it with our Active Directory setup. Overall, this home lab implementation demonstrates a successful deployment of network and domain services, allowing for efficient management and user authentication.
