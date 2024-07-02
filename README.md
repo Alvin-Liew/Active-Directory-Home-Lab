@@ -45,6 +45,8 @@ Note: The VM being configured is the one you installed Windows Server 2019 on. I
 
 Once you're finished setting up the VM settings you can select the server and start it up. Remember to select "input" => "Keyboard" => "insert ctrl-alt-delete" to take you to the login page where you will insert your password.
 
+##
+
 2. Setting up the Internal and External Networks
 
 Click on "Network"
@@ -73,6 +75,8 @@ Preferred DNS: 127.0.0.1 (Loop-back-IP address // When we install AD DS, DNS is 
 If you want you can rename the system by right clicking "Windows Start" => click "System" => click "Rename this PC" to DC or Domain Controller.
 Once done you can restart the machine
 
+##
+
 3. Setting up Active Directory Domain Services
    
 Brief theory, There are two main logical network designs:
@@ -94,6 +98,8 @@ Select "Add a new forest." mydomain.com is the root domain name => Select a pass
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/4f99a39c-f899-4c59-8adf-e7d81ed3e285)
 
+##
+
 4. Creating a dedicated domain Administrator account
 
 Instead of utilizing the built-in admin account you have been using to access the server, it is best practice to create a separate administrator account.
@@ -114,6 +120,8 @@ We can now sign out of the default admin account and sign in using the domain ad
 
 Click on the Windows icon => click on the Administrator icon => click “sign out” => and sign in with the new account.
 
+##
+
 5. Install Remote Access Services (RAS) and Network Address Translation (NAT) on the DC
 
 Our network is set up to mimic a business setting, with traffic from clients on our private network or local area network (LAN) being sent to the internet via the domain controller, which is a single IP address. The NAT and RAS gateways make this feasible.
@@ -127,6 +135,8 @@ Once the installation is completed, click on “tools” => click on “Router a
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/b0a923c6-e834-4b80-8d01-b48fbce6402e)
 
 With the installation of RAS and NAT completed computers on our LAN will be able to reach the internet once the DHCP server is installed.
+
+##
 
 6. Install Dynamic Host Configuration Protocol (DHCP) server
 
@@ -146,7 +156,9 @@ The IPv4 is currently displaying a red arrow, We need to authorize the DC and re
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/6a17b1a9-acbe-416f-a170-cf067e2f8c8f)
 
-6. Automating the creation of 1,000 users using powershell script
+##
+
+7. Automating the creation of 1,000 users using powershell script
 
 Click "Start" => "Windows PowerShell ISE" which is located under "Windows PowerShell"
 
@@ -154,11 +166,13 @@ Click "Start" => "Windows PowerShell ISE" which is located under "Windows PowerS
 
 Click "new script" and paste the script as follows:
 
-# ------------------------------------------------------ #
+\------------------------------------------------------
+
 $PASSWORD_FOR_USERS   = "UserPassword1"
 
 $USER_FIRST_LAST_LIST = Get-Content .\names.txt
-# ------------------------------------------------------ #
+
+\------------------------------------------------------
 
 $password = ConvertTo-SecureString $PASSWORD_FOR_USERS -AsPlainText -Force
 
@@ -194,7 +208,9 @@ Once the script is finished, You will start to notice in your "Users" file locat
 
 (Remember that "$PASSWORD_FOR_USERS   = "UserPassword1"" is what we are setting as the passwords for all the accounts which you will need later)
 
-7. Create a Virtual Machine for your Windows Computer
+##
+
+8. Create a Virtual Machine for your Windows Computer
 
 Click new => Name your VM, select the version "Windows 10 (64-bit)," and hit next => Assign at least 4GB of RAM and assign 4 CPU processors, and hit next => next => Finish
 Next, open up the settings and select “General” => select “Advanced” and choose “Bidirectional” in the dropdown box for both “Shared Clipboard” and “Drag ‘n’ Drop”
