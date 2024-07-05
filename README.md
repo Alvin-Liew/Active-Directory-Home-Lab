@@ -81,7 +81,7 @@ Once done you can restart the machine
    
 Brief theory, There are two main logical network designs:
 
-Workgroup Environment: This is similar to your home network, except that instead of being replicated throughout the devices in the network, a user's credential (password and username) is saved in a database called Security Account Manager (SAM) that is exclusive to the user's device. In this manner, the user's account is formed on that device, and only they can log on to it. No other user can connect on to it. It's a fairly excellent technique to keep your personal device secure, but managing individual devices for password resets and user account creation in a commercial setting with, say, a thousand and one devices, is a major hassle.
+Workgroup Environment: This is similar to your home network, except that instead of being replicated throughout the devices in the network, a user's credential (password and username) is saved in a database called Security Account Manager (SAM) that is exclusive to the user's device. In this manner, the user's account is formed on that device, and only they can log on to it. No other user can connect to it. It's a fairly excellent technique to keep your personal device secure, but managing individual devices for password resets and user account creation in a commercial setting with, say, a thousand and one devices, is a major hassle.
 Domain-based Environment. To centrally handle user and computer account creation, password resets, and authentication, businesses need a domain-based system. In this case, PCs are connected to the domain and users are established in the domain controller. Unlike Workgroup accounts, these accounts exist in the domain controller rather than on specific devices. In this manner, a user inside the domain may get to any computer inside the domain, provide their login information, and receive authentication to access any machine.
 
 The program that is installed on a Windows server and allows management of users and machines is called Active Directory Domain Services. With the desired DNS setup from the previous step, the AD publishes a large number of DNS entries to the DC. We will install AD DS on the Server 2019 in the ensuing stages.
@@ -104,7 +104,7 @@ Select "Add a new forest." mydomain.com is the root domain name => Select a pass
 
 Instead of utilizing the built-in admin account you have been using to access the server, it is best practice to create a separate administrator account.
 
-Click "Start" => "Active Directory Users and Computers" which is located under "Windows Administative Tools"  
+Click "Start" => "Active Directory Users and Computers" which is located under "Windows Administrative Tools"  
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/b0da8428-7db8-4b5d-96c4-df4c81e9ff25)
 
@@ -150,7 +150,7 @@ Click "Add roles & features" as per normal => Following => Installation based on
 
 Once the installation is completed, click on “close”. Next is to configure the installed DHCP server with the scope as discussed.
 
-Click “Tools” => DHCP => Click “Primary-DC” => Rightclick on “IPv4” => New scope => use 192.168.0.150–250 as the scope name => Start IP address: 172.16.0.100 => End IP address: 172.16.0.200 => subnet mask of /24 or 255.255.255.0 => No exclusion in our case so click “Next” => Lease duration is case dependent, so leave the default => Click yes to configure DHCP options — this specifies how computers joining the domain will access the internet. In this case, our DC is the option, so click next and Enter 172.16.0.1 => click “Add” => Next (3x) => Finish.
+Click “Tools” => DHCP => Click “Primary-DC” => Right Click on “IPv4” => New scope => use 192.168.0.150–250 as the scope name => Start IP address: 172.16.0.100 => End IP address: 172.16.0.200 => subnet mask of /24 or 255.255.255.0 => No exclusion in our case so click “Next” => Lease duration is case dependent, so leave the default => Click yes to configure DHCP options — this specifies how computers joining the domain will access the internet. In this case, our DC is the option, so click next and Enter 172.16.0.1 => click “Add” => Next (3x) => Finish.
 
 The IPv4 is currently displaying a red arrow, We need to authorize the DC and refresh. So right-click “Primary-DC” => click authorize => right-click again and click refresh and both IPv4 and IPv6 will turn green. As you notice the address lease is empty and this is where the windows 10 client machine will go
 
@@ -223,19 +223,19 @@ Next, Assign the network adapter 1 to the internal network establishing a connec
 
 Once you're finished setting up the VM settings you can select the windows 10 machine and start it up. Setup windows 10 and make sure to select windows 10 pro when setting it up. 
 
-When the installation is completed, you will need to setup the machine for an organization and select "Domain join instead" => Fill out the name with "User" => and leave the passwork empty => Once you have load up to the desktop screen we will start a network test => search of CMD => start it up => ping www.google.com => start another ping to mydomain.com
+When the installation is completed, you will need to setup the machine for an organization and select "Domain join instead" => Fill out the name with "User" => and leave the password empty => Once you have load up to the desktop screen we will start a network test => search of CMD => start it up => ping www.google.com => start another ping to mydomain.com
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/23056f08-31b0-4ede-92a2-d48bb700ff68)
 
-As you can see that www.google.com resolved which means that our DNS server is working and since we can ping to the internet that means the whole infrustructure is working. This shows that we have connectivity all the way the default gateway which is the domain controller and the domain controller is properly natting it and forwarding it out to the internet and properly come back as an echo reply.
+As you can see that www.google.com has been resolved which means that our DNS server is working and since we can ping to the internet that means the whole infrastructure is working. This shows that we have connectivity all the way the default gateway which is the domain controller and the domain controller is properly natting it and forwarding it out to the internet and properly coming back as an echo reply.
 
-We can change the name of the windows computer to Client1 following the network diagram by right clicking "Windows Start" => click "System" => click "Rename this PC (advanced)" => click "Change..." => Rename computer name to "CLient1" => select "Domain:" and enter: "mydomain.com" => click ok => enter the admin account we created awhile back: (user: a-liew) => restart now
+We can change the name of the windows computer to Client1 following the network diagram by right clicking "Windows Start" => click "System" => click "Rename this PC (advanced)" => click "Change..." => Rename computer name to "Client1" => select "Domain:" and enter: "mydomain.com" => click ok => enter the admin account we created a while back: (user: a-liew) => restart now
 
 Once this is done if you go back to the server machine and navigate through the server manager to tools => Click DHCP => click the dropdown bar for "IPv4" => click "Scope [172.16.0...0]" => click address leases we can see that we have one lease from our client computer
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/c71caaea-cf5c-4352-ba86-cf0729825630)
 
-If you navigate to your Computers by Clicking "Start" => "Active Directory Users and Computers" which is located under "Windows Administative Tools" => click the dropdown bar for "mydomain.com" => click "Computers" you will find our client computer there as well
+If you navigate to your Computers by Clicking "Start" => "Active Directory Users and Computers" which is located under "Windows Administrative Tools" => click the dropdown bar for "mydomain.com" => click "Computers" you will find our client computer there as well
 
 ![image](https://github.com/Alvin-Liew/Active-Directory-Home-Lab/assets/105011531/64ea56f0-72bf-4904-8c39-aa2558e7e7c9)
 
@@ -243,3 +243,4 @@ With all this setup you can go back to your client machine and login as any of t
 
 ## Conclusion
 We have successfully completed the setup and configuration of our network infrastructure. By installing and configuring the necessary software, such as DHCP, and utilizing an architectural design blueprint, we have ensured smooth network connectivity and IP address assignment for clients. By automating user creation through a PowerShell script, we have streamlined administrative tasks. With the Windows 10 virtual machine running as our client, we have verified the network’s functionality. By adding the client machine to the domain, we have integrated it with our Active Directory setup. Overall, this home lab implementation demonstrates a successful deployment of network and domain services, allowing for efficient management and user authentication.
+
